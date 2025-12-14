@@ -53,12 +53,12 @@ function updateUIWithUser(user) {
                         <a href="/profile.html?id=${user.id}">
                             <i class="fas fa-user"></i> Mi Perfil
                         </a>
-                        ${user.role === 'admin' ? `
+                        ${user.role === 'admin' || user.role === 'super_admin' ? `
                             <a href="/admin.html">
                                 <i class="fas fa-shield-alt"></i> Panel Admin
                             </a>
                         ` : ''}
-                        ${user.role === 'author' || user.role === 'admin' ? `
+                        ${user.role === 'author' || user.role === 'admin' || user.role === 'super_admin' ? `
                             <a href="/author-panel.html">
                                 <i class="fas fa-pen"></i> Crear Post
                             </a>
@@ -113,8 +113,8 @@ function updateUIWithUser(user) {
                     </div>
                 </div>
                 <a href="/profile.html?id=${user.id}"><i class="fas fa-user"></i> Mi Perfil</a>
-                ${user.role === 'admin' ? `<a href="/admin.html"><i class="fas fa-shield-alt"></i> Panel Admin</a>` : ''}
-                ${user.role === 'author' || user.role === 'admin' ? `<a href="/author-panel.html"><i class="fas fa-pen"></i> Crear Post</a>` : ''}
+                ${user.role === 'admin' || user.role === 'super_admin' ? `<a href="/admin.html"><i class="fas fa-shield-alt"></i> Panel Admin</a>` : ''}
+                ${user.role === 'author' || user.role === 'admin' || user.role === 'super_admin' ? `<a href="/author-panel.html"><i class="fas fa-pen"></i> Crear Post</a>` : ''}
                 <a href="/vixymastery.html"><i class="fas fa-trophy"></i> Vixy Mastery</a>
                 <a href="/settings.html"><i class="fas fa-cog"></i> Configuración</a>
                 <a href="#" onclick="logoutUser(event)" class="logout-link"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
