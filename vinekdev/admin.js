@@ -7,6 +7,7 @@ const API_URL = 'https://vineksec.online/blog-api.php';
 const AUTH_URL = 'https://vineksec.online/auth-clean.php';
 const UPLOAD_URL = 'https://vineksec.online/upload-image.php';
 const UPLOAD_AVATAR_URL = 'https://vineksec.online/upload-avatar.php';
+const NEWSLETTER_URL = 'https://vineksec.online/send-newsletter.php';
 
 let currentEditPostId = null;
 let currentEditUserId = null;
@@ -337,7 +338,14 @@ async function handleNewPost(e) {
         const data = await response.json();
         
         if (data.success) {
+            const postId = data.id; // ID del nuevo post
             alert('✓ Post publicado exitosamente!');
+            
+            // Preguntar si quiere enviar newsletter
+            if (confirm('¿Enviar notificación a suscriptores del newsletter? (｡•̀ᴗ-)✧')) {
+                await sendNewsletterNotification(postId);
+            }
+            
             document.getElementById('newPostForm').reset();
             document.getElementById('postImagePreview').style.display = 'none';
             loadDashboardStats();
@@ -1315,6 +1323,49 @@ async function checkModerationAccess() {
         }
     } catch (error) {
         console.error('Error verificando acceso a moderación:', error);
+    }
+}
+
+// ============================================
+// NEWSLETTER - ENVIAR NOTIFICACIÓN
+// ============================================
+
+async function sendNewsletterNotification(postId) {
+    try {
+        // Mostrar indicador de envío
+        const sendingAlert = document.createElement('div');
+        sendingAlert.id = 'sending-newsletter-alert';
+        sendingAlert.style.cssText = 'position: fixed; top: 20px; right: 20px; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); padding: 1rem 1.5rem; border-radius: 8px; color: #a5b4fc; z-index: 10000;';
+        sendingAlert.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando newsletter... (｡•̀ᴗ-)✧';
+        document.body.appendChild(sendingAlert);
+        
+        const formData = new FormData();
+        formData.append('post_id', postId);
+        
+        const response = await fetch(NEWSLETTER_URL, {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        // Remover indicador de envío
+        sendingAlert.remove();
+        
+        if (data.success) {
+            // Mostrar resultado
+            const resultAlert = document.createElement('div');
+            resultAlert.style.cssText = 'position: fixed; top: 20px; right: 20px; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); padding: 1rem 1.5rem; border-radius: 8px; color: #86efac; z-index: 10000;';
+            resultAlert.innerHTML = `✓ ${data.message} uwu<br><small>${data.sent} emails enviados exitosamente</small>`;
+            document.body.appendChild(resultAlert);
+            
+            setTimeout(() => resultAlert.remove(), 5000);
+        } else {
+            alert('✗ Error al enviar newsletter: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error enviando newsletter:', error);
+        alert('✗ Error de conexión al enviar newsletter (¬_¬)');
     }
 }
 
