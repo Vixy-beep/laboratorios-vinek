@@ -1,0 +1,47 @@
+# Credenciales y configuración sensible
+vinekdev/config.php
+vinekdev/config-clean.php
+*.env
+.env.*
+
+# Logs
+*.log
+vinekdev/logs/
+logs/
+
+# Uploads de usuarios
+vinekdev/uploads/*
+!vinekdev/uploads/README.txt
+
+# Node modules si agregamos backend
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-*
+
+# Temporales
+tmp/
+temp/
+*.tmp
+
+# Docker
+docker-compose.override.yml

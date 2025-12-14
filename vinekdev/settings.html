@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - VinekSec</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .settings-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .settings-card h2 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .settings-card h2 i {
+            color: #6366f1;
+        }
+
+        .avatar-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .avatar-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #6366f1;
+            object-fit: cover;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+        }
+
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .btn-upload {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-upload:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-upload:active {
+            transform: translateY(0);
+        }
+
+        .file-name {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .upload-info {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .navbar-brand a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar-toggler {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            margin-left: auto;
+        }
+
+        .navbar-menu > a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .navbar-menu > a:hover {
+            color: #fff;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .navbar-auth {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: #fff !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        body {
+            padding-top: 80px;
+        }
+
+        @media (max-width: 1200px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .navbar-menu {
+                gap: 0.5rem;
+            }
+            
+            .navbar-menu > a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .navbar-menu > a i {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .settings-container {
+                padding: 1rem;
+            }
+
+            .settings-card {
+                padding: 1.5rem;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .navbar-toggler {
+                display: block;
+                order: 2;
+            }
+
+            .navbar-brand {
+                order: 1;
+            }
+
+            .navbar-menu {
+                display: none;
+                order: 3;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+                margin-top: 1rem;
+                margin-left: 0;
+            }
+
+            .navbar-menu.active {
+                display: flex;
+            }
+
+            .navbar-menu > a {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .navbar-auth {
+                width: 100%;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .navbar-auth > * {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="https://raw.githubusercontent.com/VinekSec/Art/refs/heads/main/vinek-logo.jpeg" alt="VinekSec Logo">
+            <a href="index.html">VinekSec</a>
+        </div>
+        <button class="navbar-toggler" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="navbar-menu">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <a href="vixymastery.html"><i class="fas fa-trophy"></i> Vixy Mastery</a>
+            <a href="jorise.html"><i class="fas fa-shield-alt"></i> Jorise Security</a>
+            <div class="navbar-auth" id="navbar-auth">
+                <a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="settings-container">
+        <div class="settings-card">
+            <h2>
+                <i class="fas fa-user-circle"></i>
+                Foto de Perfil
+            </h2>
+
+            <div id="alert-container"></div>
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Procesando imagen...</p>
+            </div>
+
+            <div class="avatar-section">
+                <img id="avatar-preview" class="avatar-preview" src="" alt="Avatar">
+
+                <div class="upload-section">
+                    <div class="file-input-wrapper">
+                        <label for="avatar-input" class="btn-upload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Seleccionar Imagen
+                        </label>
+                        <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/gif,image/webp">
+                    </div>
+
+                    <div id="file-name" class="file-name"></div>
+
+                    <div class="upload-info">
+                        <i class="fas fa-info-circle"></i>
+                        Sube una imagen JPG, PNG, GIF o WEBP. Máximo 2MB. 
+                        La imagen se recortará automáticamente a 200x200 píxeles.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Futura sección de cambio de contraseña -->
+        <!--
+        <div class="settings-card">
+            <h2>
+                <i class="fas fa-lock"></i>
+                Cambiar Contraseña
+            </h2>
+            <p style="color: rgba(255, 255, 255, 0.5);">Próximamente...</p>
+        </div>
+        -->
+    </div>
+
+    <script>
+        const API_URL = 'auth-clean.php';
+        const UPLOAD_URL = 'upload-avatar.php';
+        let currentUser = null;
+
+        // Verificar autenticación al cargar
+        document.addEventListener('DOMContentLoaded', async function() {
+            await checkAuth();
+            
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            loadAvatar();
+            setupUpload();
+        });
+
+        async function checkAuth() {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'checkAuth' })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    currentUser = data.user;
+                    updateNavbar(data.user);
+                } else {
+                    currentUser = null;
+                }
+            } catch (error) {
+                console.error('Error checking auth:', error);
+                currentUser = null;
+            }
+        }
+
+        function updateNavbar(user) {
+            const authContainer = document.getElementById('navbar-auth');
+            authContainer.innerHTML = `
+                <a href="settings.html" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; padding: 0.5rem 0.75rem; border-radius: 8px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; font-size: 0.95rem;"><i class="fas fa-cog"></i> Configuración</a>
+                <a href="profile.html?id=${user.id}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; padding: 0.5rem 0.75rem; border-radius: 8px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap; font-size: 0.95rem;">
+                    <img src="${user.avatar}" alt="${user.name}" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #6366f1; object-fit: cover;">
+                    <span>${user.name}</span>
+                </a>
+                <button onclick="logout()" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-family: inherit; white-space: nowrap; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            `;
+        }
+
+        async function logout() {
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'logout' })
+                });
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function loadAvatar() {
+            const preview = document.getElementById('avatar-preview');
+            preview.src = currentUser.avatar;
+        }
+
+        function setupUpload() {
+            const input = document.getElementById('avatar-input');
+            const fileNameDisplay = document.getElementById('file-name');
+
+            input.addEventListener('change', async function(e) {
+                const file = e.target.files[0];
+
+                if (!file) return;
+
+                // Mostrar nombre de archivo
+                fileNameDisplay.textContent = `Seleccionado: ${file.name}`;
+
+                // Validar tamaño
+                if (file.size > 2 * 1024 * 1024) {
+                    showAlert('La imagen es muy grande. Máximo 2MB.', 'error');
+                    input.value = '';
+                    fileNameDisplay.textContent = '';
+                    return;
+                }
+
+                // Validar tipo
+                if (!file.type.match('image/(jpeg|png|gif|webp)')) {
+                    showAlert('Tipo de archivo no válido. Solo JPG, PNG, GIF o WEBP.', 'error');
+                    input.value = '';
+                    fileNameDisplay.textContent = '';
+                    return;
+                }
+
+                // Subir imagen
+                await uploadAvatar(file);
+            });
+        }
+
+        async function uploadAvatar(file) {
+            const loading = document.getElementById('loading');
+            const preview = document.getElementById('avatar-preview');
+
+            loading.style.display = 'block';
+
+            try {
+                const formData = new FormData();
+                formData.append('image', file);
+
+                const response = await fetch(UPLOAD_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                // Verificar si la respuesta es JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const text = await response.text();
+                    console.error('Respuesta no JSON:', text);
+                    showAlert('Error del servidor. Verifica que upload-avatar.php esté en el servidor.', 'error');
+                    loading.style.display = 'none';
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('¡Avatar actualizado correctamente!', 'success');
+                    
+                    // Actualizar preview con la ruta correcta
+                    const avatarPath = data.path || data.url;
+                    preview.src = avatarPath + '?t=' + Date.now(); // Cache bust
+                    
+                    // Actualizar navbar
+                    currentUser.avatar = avatarPath;
+                    updateNavbar(currentUser);
+
+                    // Limpiar input
+                    document.getElementById('avatar-input').value = '';
+                    document.getElementById('file-name').textContent = '';
+                } else {
+                    showAlert(data.message || 'Error al subir la imagen', 'error');
+                }
+            } catch (error) {
+                console.error('Error completo:', error);
+                showAlert('Error: ' + error.message, 'error');
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function showAlert(message, type) {
+            const container = document.getElementById('alert-container');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-error';
+            
+            container.innerHTML = `
+                <div class="alert ${alertClass}">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    ${message}
+                </div>
+            `;
+
+            container.querySelector('.alert').style.display = 'block';
+
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Toggle navbar en móvil
+        document.querySelector('.navbar-toggler').addEventListener('click', function() {
+            document.querySelector('.navbar-menu').classList.toggle('active');
+        });
+    </script>
+    <script src="auth-check.js"></script>
+</body>
+</html>

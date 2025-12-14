@@ -1,0 +1,48 @@
+# ============================================
+# VINEKSEC - URL REWRITING
+# ============================================
+
+# Activar mod_rewrite
+RewriteEngine On
+RewriteBase /
+
+# Prevenir redirecciones incorrectas de archivos .html
+RewriteCond %{REQUEST_URI} ^/post/.+\.html$
+RewriteRule .* - [L,R=404]
+
+# URLs amigables para posts del blog
+# De: post/titulo-del-articulo-123
+# A:  post.html?id=123
+RewriteRule ^post/([a-zA-Z0-9-]+)-([0-9]+)$ post.html?id=$2 [L,QSA]
+
+# Redireccionar URLs antiguas a nuevas
+# De: post.html?id=123
+# A:  post/titulo-del-articulo-123
+RewriteCond %{QUERY_STRING} ^id=([0-9]+)$
+RewriteCond %{REQUEST_URI} ^/post\.html$
+RewriteRule ^post\.html$ /post-redirect.php?id=%1 [L,QSA]
+
+# URLs para perfiles de usuario
+# De: profile/nombre-usuario-123
+# A:  profile.html?id=123
+RewriteRule ^profile/([a-zA-Z0-9-]+)-([0-9]+)$ profile.html?id=$2 [L,QSA]
+
+# Forzar HTTPS (opcional, descomenta si tienes SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Prevenir acceso a archivos sensibles (solo configuración)
+<FilesMatch "^(config\.php|config-clean\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevenir listado de directorios
+Options -Indexes
+
+# Protección básica
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>

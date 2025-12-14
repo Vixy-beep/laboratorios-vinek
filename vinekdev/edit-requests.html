@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes de Edición - VinekSec Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-fixed.css">
+    <style>
+        .edit-requests-section {
+            margin: 2rem 0;
+        }
+
+        .request-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .request-info h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .request-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .author-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .author-badge img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #6366f1;
+        }
+
+        .time-badge {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .changes-comparison {
+            margin: 1.5rem 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-column {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .comparison-column h4 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .column-current h4 {
+            color: #fca5a5;
+        }
+
+        .column-proposed h4 {
+            color: #86efac;
+        }
+
+        .field-change {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .field-change:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .field-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .field-value {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .field-value.old {
+            color: #fca5a5;
+        }
+
+        .field-value.new {
+            color: #86efac;
+        }
+
+        .content-preview {
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+
+        .actions-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #fff;
+        }
+
+        .btn-approve:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-reject {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .btn-reject:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-view {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #6366f1;
+            margin-bottom: 1rem;
+        }
+
+        .badge-count {
+            background: #ef4444;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Modal para motivo de rechazo */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body textarea {
+            width: 100%;
+            min-height: 120px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            color: #fff;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions-footer {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>VinekSec Admin</span>
+            </div>
+            <nav class="admin-nav">
+                <a href="admin.html"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="admin.html#posts"><i class="fas fa-newspaper"></i> Posts</a>
+                <a href="admin.html#users"><i class="fas fa-users"></i> Usuarios</a>
+                <a href="edit-requests.html" class="active">
+                    <i class="fas fa-edit"></i> Solicitudes de Edición
+                    <span id="pending-badge" class="badge-count" style="display: none;">0</span>
+                </a>
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Volver al Sitio</a>
+            </nav>
+            <div class="admin-footer">
+                <button onclick="logout()" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1><i class="fas fa-edit"></i> Solicitudes de Edición</h1>
+                <div class="admin-user">
+                    <img id="user-avatar" src="" alt="Avatar">
+                    <span id="user-name"></span>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <div id="loading" class="loading-state" style="text-align: center; padding: 3rem;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #6366f1;"></i>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-top: 1rem;">Cargando solicitudes...</p>
+                </div>
+
+                <div id="requests-container" class="edit-requests-section" style="display: none;"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de rechazo -->
+    <div id="reject-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-times-circle"></i> Rechazar Edición</h3>
+            </div>
+            <div class="modal-body">
+                <label style="color: rgba(255, 255, 255, 0.7); display: block; margin-bottom: 0.5rem;">
+                    Motivo del rechazo:
+                </label>
+                <textarea id="reject-reason" placeholder="Explica por qué se rechaza esta edición..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button onclick="confirmReject()" class="btn btn-reject">
+                    <i class="fas fa-times"></i> Confirmar Rechazo
+                </button>
+                <button onclick="closeModal()" class="btn btn-view">
+                    <i class="fas fa-arrow-left"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'auth-clean.php';
+        const EDIT_API = 'edit-approval-api.php';
+        let currentRejectPostId = null;
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            await checkAuth();
+            await loadPendingEdits();
+        });
+
+        async function checkAuth() {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'checkAuth' })
+                });
+
+                const data = await response.json();
+
+                if (data.success && (data.user.role === 'admin' || data.user.role === 'super_admin')) {
+                    document.getElementById('user-name').textContent = data.user.name;
+                    document.getElementById('user-avatar').src = data.user.avatar;
+                } else {
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                window.location.href = 'login.html';
+            }
+        }
+
+        async function loadPendingEdits() {
+            try {
+                const response = await fetch(EDIT_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'getPendingEdits' })
+                });
+
+                const data = await response.json();
+
+                document.getElementById('loading').style.display = 'none';
+                const container = document.getElementById('requests-container');
+                container.style.display = 'block';
+
+                if (!data.success || data.count === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-check-circle"></i>
+                            <h3 style="color: #fff; margin-bottom: 0.5rem;">No hay solicitudes pendientes</h3>
+                            <p>Todas las ediciones han sido procesadas</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Actualizar badge
+                const badge = document.getElementById('pending-badge');
+                badge.textContent = data.count;
+                badge.style.display = 'inline-block';
+
+                container.innerHTML = data.edits.map(edit => renderEditRequest(edit)).join('');
+            } catch (error) {
+                console.error('Error loading edits:', error);
+            }
+        }
+
+        function renderEditRequest(edit) {
+            const changes = edit.pending_changes;
+            const changedFields = Object.keys(changes);
+
+            return `
+                <div class="request-card">
+                    <div class="request-header">
+                        <div class="request-info">
+                            <h3>${escapeHtml(edit.title)}</h3>
+                            <div class="request-meta">
+                                <div class="author-badge">
+                                    <img src="${edit.author_avatar}" alt="${edit.author_name}">
+                                    <span>${escapeHtml(edit.author_name)}</span>
+                                </div>
+                                <div class="time-badge">
+                                    <i class="fas fa-clock"></i> Hace ${edit.time_ago}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="changes-comparison">
+                        ${changedFields.map(field => renderFieldComparison(field, edit, changes[field])).join('')}
+                    </div>
+
+                    <div class="actions-footer">
+                        <button onclick="approveEdit(${edit.id})" class="btn btn-approve">
+                            <i class="fas fa-check"></i> Aprobar Cambios
+                        </button>
+                        <button onclick="showRejectModal(${edit.id})" class="btn btn-reject">
+                            <i class="fas fa-times"></i> Rechazar
+                        </button>
+                        <a href="post.html?id=${edit.id}" target="_blank" class="btn btn-view">
+                            <i class="fas fa-external-link-alt"></i> Ver Post Original
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFieldComparison(field, edit, newValue) {
+            const fieldLabels = {
+                'title': 'Título',
+                'content': 'Contenido',
+                'category': 'Categoría',
+                'featured_image': 'Imagen Destacada'
+            };
+
+            const currentValue = edit[`current_${field === 'featured_image' ? 'image' : field}`];
+            const label = fieldLabels[field] || field;
+
+            if (field === 'content') {
+                return `
+                    <div class="comparison-grid">
+                        <div class="comparison-column column-current">
+                            <h4><i class="fas fa-minus-circle"></i> ${label} Actual</h4>
+                            <div class="content-preview">${escapeHtml(currentValue.substring(0, 500))}...</div>
+                        </div>
+                        <div class="comparison-column column-proposed">
+                            <h4><i class="fas fa-plus-circle"></i> ${label} Propuesto</h4>
+                            <div class="content-preview">${escapeHtml(newValue.substring(0, 500))}...</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="field-change">
+                    <div class="field-label">${label}</div>
+                    <div class="comparison-grid" style="gap: 1rem;">
+                        <div>
+                            <small style="color: #fca5a5; display: block; margin-bottom: 0.25rem;">Actual:</small>
+                            <div class="field-value old">${escapeHtml(currentValue || 'N/A')}</div>
+                        </div>
+                        <div>
+                            <small style="color: #86efac; display: block; margin-bottom: 0.25rem;">Propuesto:</small>
+                            <div class="field-value new">${escapeHtml(newValue)}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function approveEdit(postId) {
+            if (!confirm('¿Aprobar estos cambios? El post se actualizará inmediatamente.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(EDIT_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'approveEdit',
+                        post_id: postId
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('✓ Edición aprobada correctamente');
+                    await loadPendingEdits();
+                } else {
+                    alert('✗ Error: ' + (data.message || 'No se pudo aprobar'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('✗ Error de conexión');
+            }
+        }
+
+        function showRejectModal(postId) {
+            currentRejectPostId = postId;
+            document.getElementById('reject-reason').value = '';
+            document.getElementById('reject-modal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('reject-modal').classList.remove('show');
+            currentRejectPostId = null;
+        }
+
+        async function confirmReject() {
+            const reason = document.getElementById('reject-reason').value.trim();
+
+            if (!reason) {
+                alert('Por favor, proporciona un motivo para el rechazo');
+                return;
+            }
+
+            try {
+                const response = await fetch(EDIT_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'rejectEdit',
+                        post_id: currentRejectPostId,
+                        reason: reason
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('✓ Edición rechazada');
+                    closeModal();
+                    await loadPendingEdits();
+                } else {
+                    alert('✗ Error: ' + (data.message || 'No se pudo rechazar'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('✗ Error de conexión');
+            }
+        }
+
+        async function logout() {
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'logout' })
+                });
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('reject-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

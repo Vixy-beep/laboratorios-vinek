@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VinekDev - Líderes en soluciones tecnológicas innovadoras. Desarrollo web, aplicaciones móviles, AI/ML, blockchain y ciberseguridad de vanguardia.">
+    <meta name="keywords" content="desarrollo web, aplicaciones móviles, inteligencia artificial, blockchain, ciberseguridad, software personalizado, VinekDev">
+    <meta name="author" content="VinekDev">
+    <meta property="og:title" content="VinekDev - Innovación Tecnológica Sin Límites">
+    <meta property="og:description" content="Transformamos ideas en soluciones digitales extraordinarias con tecnología de vanguardia">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200&q=80">
+    <title>VinekDev | Innovación Tecnológica Sin Límites</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://img.icons8.com/nolan/64/artificial-intelligence.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://img.icons8.com/nolan/64/artificial-intelligence.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Reemplaza con tu nueva Public Key de EmailJS
+            emailjs.init('TU_PUBLIC_KEY_AQUI');
+        })();
+    </script>
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth-styles.css">
+</head>
+</head>
+<body>
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">VinekDev</a>
+                <ul class="nav-links">
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="blog.html">Blog Tech & Cursos</a></li>
+                    <li><a href="vixy.html">Conoce a Vixy</a></li>
+                    <li><a href="jorise.html" class="jorise-nav-btn">
+                        <i class="fas fa-shield-alt"></i> 
+                        <span class="jorise-text">Jorise Security</span>
+                        <span class="jorise-badge">PRO</span>
+                    </a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+        <div class="mobile-menu">
+            <a href="#services">Servicios</a>
+            <a href="#about">Nosotros</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="blog.html">Blog Tech & Cursos</a>
+            <a href="vixy.html">Conoce a Vixy</a>
+            <a href="jorise.html" class="jorise-mobile"><i class="fas fa-shield-alt"></i> Jorise Security</a>
+            <a href="#contact">Contacto</a>
+            <a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Innovación Tecnológica <span class="highlight">Sin Límites</span></h1>
+                <p>Transformamos ideas revolucionarias en soluciones digitales extraordinarias. Desde desarrollo web de vanguardia hasta inteligencia artificial avanzada, creamos el futuro tecnológico de tu empresa.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Iniciar Proyecto</a>
+                    <a href="#portfolio" class="btn btn-outline">Ver Portfolio</a>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="500">0</span>
+                        <span class="stat-label">Proyectos Completados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="150">0</span>
+                        <span class="stat-label">Clientes Satisfechos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="99">0</span>
+                        <span class="stat-label">% Uptime Garantizado</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="24">0</span>
+                        <span class="stat-label">Soporte 24/7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Sección: Blog Destacado -->
+    <section id="featured-blog" class="blog-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Últimas Publicaciones <span class="highlight">Tech</span></h2>
+                <p>Insights de ciberseguridad, pentesting y tecnología de vanguardia</p>
+            </div>
+            <div id="blog-preview-grid" class="blog-preview-grid">
+                <!-- Los posts se cargarán dinámicamente -->
+                <div class="loading-posts">
+                    <i class="fas fa-spinner fa-spin"></i> Cargando posts...
+                </div>
+            </div>
+            <div class="blog-cta">
+                <a href="blog.html" class="btn btn-primary">
+                    <span class="btn-text">Ver Todos los Posts</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Servicios de Elite Tecnológica</h2>
+                <p>Soluciones de vanguardia que transforman industrias y redefinen el futuro digital</p>
+            </div>
+            <div class="services">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>WAF & Protección Web</h3>
+                    <p>Web Application Firewall de nivel empresarial con protección avanzada contra amenazas OWASP Top 10 y ataques zero-day.</p>
+                    <ul class="service-features">
+                        <li>WAF Multi-Layer Protection</li>
+                        <li>DDoS Mitigation Avanzado</li>
+                        <li>Bot Detection & Blocking</li>
+                        <li>SSL/TLS Inspection</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>Penetration Testing</h3>
+                    <p>Pruebas de penetración exhaustivas con metodologías OWASP, PTES y técnicas de Red Team para identificar vulnerabilidades críticas.</p>
+                    <ul class="service-features">
+                        <li>Red Team Operations</li>
+                        <li>Vulnerability Assessment</li>
+                        <li>Social Engineering Testing</li>
+                        <li>Exploit Development</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Forense Digital & DFIR</h3>
+                    <p>Investigación forense digital y respuesta a incidentes con análisis profundo de evidencias y recuperación de datos críticos.</p>
+                    <ul class="service-features">
+                        <li>Análisis Forense Avanzado</li>
+                        <li>Incident Response 24/7</li>
+                        <li>Malware Analysis</li>
+                        <li>Chain of Custody</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>IDS/IPS & Monitoreo</h3>
+                    <p>Sistemas de detección y prevención de intrusiones con monitoreo continuo y análisis de tráfico en tiempo real.</p>
+                    <ul class="service-features">
+                        <li>Next-Gen IDS/IPS</li>
+                        <li>Network Traffic Analysis</li>
+                        <li>Anomaly Detection AI</li>
+                        <li>SIEM Integration</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>SOC as a Service</h3>
+                    <p>Security Operations Center completo con monitoreo 24/7/365, threat hunting proactivo y respuesta automatizada a incidentes.</p>
+                    <ul class="service-features">
+                        <li>SOC Level 2 & 3</li>
+                        <li>Threat Hunting 24/7</li>
+                        <li>Security Orchestration</li>
+                        <li>Compliance Management</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Zero-Trust Architecture</h3>
+                    <p>Implementación de arquitecturas Zero-Trust con microsegmentación, autenticación continua y control de acceso granular.</p>
+                    <ul class="service-features">
+                        <li>Zero-Trust Implementation</li>
+                        <li>Identity & Access Management</li>
+                        <li>Micro-Segmentation</li>
+                        <li>Continuous Authentication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Arquitectos del Futuro Digital</h2>
+                <p>Un equipo de visionarios tecnológicos redefiniendo los límites de la innovación</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h3>Pioneros en Innovación Tecnológica</h3>
+                    <p>Somos VinekDev, un colectivo de ingenieros, diseñadores y estrategas digitales que no solo abrazan el futuro, sino que lo crean. Con más de una década combinada en tecnologías emergentes, transformamos conceptos disruptivos en realidades digitales extraordinarias.</p>
+                    <p>Nuestro DNA está compuesto por código limpio, arquitecturas escalables y una obsesión inquebrantable por la excelencia. Cada línea de código que escribimos, cada interfaz que diseñamos, lleva el sello de la innovación radical y la craftsmanship técnico.</p>
+                    <p>No somos solo desarrolladores, somos hackers del futuro, ingenieros de experiencias y creadores de ecosistemas digitales que trascienden las expectativas convencionales.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-code"></i>
+                            <span>Full-Stack Masters</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>Performance Obsessed</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security First</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-infinity"></i>
+                            <span>Scalable Solutions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image animate-on-scroll">
+                    <img src="logo-vinek.jpg" alt="VinekDev - Innovación Tecnológica">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio de Innovación</h2>
+                <p>Proyectos que han revolucionado industrias y redefinido estándares tecnológicos</p>
+            </div>
+            <div class="services">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>E-Commerce con WAF Avanzado</h3>
+                    <p>Plataforma de comercio electrónico fortificada con Web Application Firewall de nivel empresarial que bloqueó 2.5M de ataques maliciosos.</p>
+                    <ul class="service-features">
+                        <li>WAF Multi-Layer Protection</li>
+                        <li>DDoS Mitigation 24/7</li>
+                        <li>PCI-DSS Compliance</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>SOC Level 3 - HealthTech</h3>
+                    <p>Security Operations Center de Nivel 3 para infraestructura hospitalaria crítica, protegiendo datos de 500K+ pacientes.</p>
+                    <ul class="service-features">
+                        <li>Threat Hunting 24/7/365</li>
+                        <li>HIPAA Compliance Total</li>
+                        <li>Incident Response < 5min</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Pentesting & Smart Contract Audit</h3>
+                    <p>Auditoría exhaustiva de seguridad para protocolo DeFi, identificando y mitigando 23 vulnerabilidades críticas antes del lanzamiento.</p>
+                    <ul class="service-features">
+                        <li>Red Team Operations</li>
+                        <li>Blockchain Security Audit</li>
+                        <li>Zero-Day Prevention</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Vixy -->
+    <section class="vixy-cta-section" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 100px 0; position: relative; overflow: hidden;">
+        <div class="container" style="text-align: center; position: relative; z-index: 2;">
+            <img src="vixy/vixylengua.png" alt="Vixy - Tu hacker favorita en pixel art" style="width: 180px; height: 180px; margin: 0 auto 2rem; display: block; border-radius: 20px; box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4); animation: bounce 2s infinite;" onerror="this.src='vixy/vixy.png'">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">¡Hola! Soy Vixy 👋</h2>
+            <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 0 auto 2.5rem; line-height: 1.8;">¡Tu hacker favorita en pixel art! 🎮 Apasionada por la ciberseguridad y construir una comunidad increíble. ¡Ven a conocerme mejor!</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="vixy.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">
+                    <i class="fas fa-heart" style="margin-right: 10px;"></i>
+                    Conoce mi Historia
+                </a>
+                <a href="https://www.facebook.com/share/14Miud1yHVv/" target="_blank" class="btn btn-outline" style="font-size: 1.1rem; padding: 1rem 2.5rem;">
+                    <i class="fab fa-facebook-messenger" style="margin-right: 10px;"></i>
+                    Únete a la Comunidad
+                </a>
+            </div>
+        </div>
+        <style>
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+            }
+        </style>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>¿Listo para Revolucionar tu Industria?</h2>
+            <p>Únete a los líderes visionarios que ya han transformado sus negocios con nuestras soluciones disruptivas. El futuro no espera, y nosotros tampoco.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Iniciar Revolución</a>
+                <a href="#services" class="btn btn-outline">Explorar Servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conectemos el Futuro</h2>
+                <p>Transforma tu visión en realidad digital. Cada gran revolución comienza con una conversación.</p>
+            </div>
+            <div class="contact-form animate-on-scroll">
+                <form id="contact-form" action="send-email.php" method="POST">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa/Organización</label>
+                            <input type="text" id="company" name="company" class="form-control" placeholder="Nombre de tu empresa" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Corporativo</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tu@empresa.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Servicio de Interés</label>
+                        <select id="service" name="service" class="form-control" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="web-development">Desarrollo Web Avanzado</option>
+                            <option value="mobile-apps">Apps Móviles Nativas</option>
+                            <option value="ai-ml">IA & Machine Learning</option>
+                            <option value="blockchain">Blockchain & Web3</option>
+                            <option value="cybersecurity">Ciberseguridad Elite</option>
+                            <option value="cloud-devops">Cloud & DevOps</option>
+                            <option value="consulting">Consultoría Tecnológica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Presupuesto Estimado</label>
+                        <select id="budget" name="budget" class="form-control">
+                            <option value="">Selecciona un rango</option>
+                            <option value="10k-25k">$10,000 - $25,000</option>
+                            <option value="25k-50k">$25,000 - $50,000</option>
+                            <option value="50k-100k">$50,000 - $100,000</option>
+                            <option value="100k-250k">$100,000 - $250,000</option>
+                            <option value="250k+">$250,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Cuéntanos tu Visión</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Describe tu proyecto, objetivos y cómo podemos ayudarte a revolucionar tu industria..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <span class="btn-text">Iniciar Transformación Digital</span>
+                    </button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 0; color: white;">
+        <div class="container" style="max-width: 800px; text-align: center;">
+            <h2 style="font-size: 36px; margin-bottom: 20px;">📬 Suscríbete a Nuestra Newsletter</h2>
+            <p style="font-size: 18px; opacity: 0.9; margin-bottom: 40px;">Recibe notificaciones de nuestros últimos posts sobre ciberseguridad, pentesting y desarrollo. Sin spam, solo contenido de valor.</p>
+            <form id="newsletter-form" style="display: flex; gap: 15px; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
+                <input type="email" id="newsletter-email" placeholder="tu@email.com" required style="flex: 1; min-width: 250px; padding: 15px 20px; border: none; border-radius: 8px; font-size: 16px;">
+                <button type="submit" style="padding: 15px 40px; background: white; color: #667eea; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px;">Suscribirme</button>
+            </form>
+            <div id="newsletter-alert" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
+            <p style="font-size: 13px; opacity: 0.7; margin-top: 20px;">✓ Contenido exclusivo &nbsp;&nbsp; ✓ Sin spam &nbsp;&nbsp; ✓ Cancela cuando quieras</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>VinekDev</h3>
+                    <p>Arquitectos del futuro digital. Creamos ecosistemas tecnológicos que trascienden las expectativas convencionales y redefinen industrias completas.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vinekdevs/" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios Elite</h3>
+                    <ul>
+                        <li><a href="#services"><i class="fas fa-rocket"></i> Desarrollo Web Avanzado</a></li>
+                        <li><a href="#services"><i class="fas fa-mobile-alt"></i> Apps Móviles Nativas</a></li>
+                        <li><a href="#services"><i class="fas fa-brain"></i> IA & Machine Learning</a></li>
+                        <li><a href="#services"><i class="fab fa-bitcoin"></i> Blockchain & Web3</a></li>
+                        <li><a href="#services"><i class="fas fa-shield-virus"></i> Ciberseguridad Elite</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Conecta con Nosotros</h3>
+                    <ul>
+                        <li><a href="mailto:info@vineksec.online"><i class="fas fa-envelope"></i> info@vineksec.online</a></li>
+                        <li><a href="tel:+18295912999"><i class="fas fa-phone"></i> +1 (829) 591-2999</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Santo Domingo, Dominican Republic</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> 24/7 Support Available</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Productos</h3>
+                    <ul>
+                        <li><a href="blog.html"><i class="fas fa-blog"></i> Tech Blog</a></li>
+                        <li><a href="jorise-pricing.html"><i class="fas fa-shield-alt"></i> Jorise Security (SaaS)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 VinekDev. Forjando el futuro digital. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Externo -->
+    <script src="script.js"></script>
+    
+    <!-- Newsletter Script -->
+    <script>
+        const NEWSLETTER_API = 'https://vineksec.online/newsletter-api.php';
+        
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('newsletter-email').value;
+            const alert = document.getElementById('newsletter-alert');
+            const button = this.querySelector('button');
+            
+            button.disabled = true;
+            button.textContent = 'Enviando...';
+            
+            try {
+                const formData = new FormData();
+                formData.append('action', 'subscribe');
+                formData.append('email', email);
+                
+                const response = await fetch(NEWSLETTER_API, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                alert.style.display = 'block';
+                if (data.success) {
+                    alert.style.background = '#c6f6d5';
+                    alert.style.color = '#22543d';
+                    alert.textContent = '✓ ' + data.message;
+                    document.getElementById('newsletter-email').value = '';
+                } else {
+                    alert.style.background = '#fed7d7';
+                    alert.style.color = '#742a2a';
+                    alert.textContent = '✗ ' + data.message;
+                }
+            } catch (error) {
+                alert.style.display = 'block';
+                alert.style.background = '#fed7d7';
+                alert.style.color = '#742a2a';
+                alert.textContent = '✗ Error de conexión. Intenta nuevamente.';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Suscribirme';
+            }
+        });
+    </script>
+
+    <!-- Modal de Autenticación -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="auth-close" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showTab('login')">Iniciar Sesión</button>
+                <button class="auth-tab" onclick="showTab('register')">Crear Cuenta</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form active">
+                <h2>Bienvenido de nuevo</h2>
+                <p>Accede a tu cuenta de Jorise Security</p>
+                
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="loginEmail" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Contraseña</label>
+                        <input type="password" id="loginPassword" required placeholder="Mínimo 6 caracteres">
+                    </div>
+                    
+                    <div class="auth-alert" id="loginAlert"></div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
+                </form>
+                
+                <p class="auth-switch">
+                    ¿No tienes cuenta? <a href="#" onclick="showTab('register'); return false;">Créala aquí</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form">
+                <h2>Crear Cuenta Gratuita</h2>
+                <p>Obtén 1 análisis gratuito al registrarte</p>
+                
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nombre (Opcional)</label>
+                        <input type="text" id="registerName" placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="registerEmail" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Contraseña</label>
+                        <input type="password" id="registerPassword" required placeholder="Mínimo 6 caracteres" minlength="6">
+                    </div>
+                    
+                    <div class="auth-alert" id="registerAlert"></div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-user-plus"></i> Crear Cuenta Gratis
+                    </button>
+                </form>
+                
+                <p class="auth-switch">
+                    ¿Ya tienes cuenta? <a href="#" onclick="showTab('login'); return false;">Inicia sesión</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Estilos del modal de autenticación */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideDown 0.3s ease;
+        }
+
+        .auth-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1;
+        }
+
+        .auth-close:hover {
+            transform: rotate(90deg);
+            color: #ffd700;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .auth-tab.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .auth-form {
+            display: none;
+            padding: 40px;
+            background: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-form h2 {
+            margin: 0 0 10px 0;
+            color: #2d3748;
+            font-size: 28px;
+        }
+
+        .auth-form > p {
+            margin: 0 0 30px 0;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1a202c;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: #667eea;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+            background: white;
+            color: #1a202c;
+        }
+
+        .form-group input::placeholder {
+            color: #a0aec0;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .auth-alert {
+            display: none;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .auth-alert.show {
+            display: block;
+        }
+
+        .auth-alert.success {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .auth-alert.error {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .auth-btn:active {
+            transform: translateY(0);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .auth-switch a {
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botón Jorise en navbar */
+        .jorise-nav-btn {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+            border: none;
+        }
+
+        .jorise-nav-btn::before {
+            display: none;
+        }
+
+        .jorise-nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .jorise-nav-btn i {
+            font-size: 16px;
+        }
+
+        .jorise-text {
+            font-weight: 600;
+        }
+
+        .jorise-badge {
+            background: #ffd700;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+
+    <script>
+        const JORISE_API = 'https://vineksec.online/jorise-api.php';
+
+        function openAuthModal() {
+            document.getElementById('authModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function showTab(tab) {
+            // Tabs
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Forms
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            if (tab === 'login') {
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.getElementById('registerForm').classList.add('active');
+            }
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const alert = document.getElementById('loginAlert');
+            const btn = e.target.querySelector('button');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+            
+            try {
+                const response = await fetch(JORISE_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'login', email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert.className = 'auth-alert show success';
+                    alert.textContent = '✓ Bienvenido' + (data.name ? ' ' + data.name : '') + '! Redirigiendo...';
+                    setTimeout(() => {
+                        window.location.href = 'jorise-dashboard.html?email=' + encodeURIComponent(email);
+                    }, 1000);
+                } else {
+                    alert.className = 'auth-alert show error';
+                    alert.textContent = '✗ ' + (data.error || 'Error al iniciar sesión');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+                }
+            } catch (error) {
+                alert.className = 'auth-alert show error';
+                alert.textContent = '✗ Error de conexión. Verifica tu internet.';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+            }
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const alert = document.getElementById('registerAlert');
+            const btn = e.target.querySelector('button');
+            
+            // Validación adicional
+            if (password.length < 6) {
+                alert.className = 'auth-alert show error';
+                alert.textContent = '✗ La contraseña debe tener al menos 6 caracteres';
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creando cuenta...';
+            
+            try {
+                const response = await fetch(JORISE_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'register', email, password, name })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert.className = 'auth-alert show success';
+                    alert.textContent = '✓ Cuenta creada! Redirigiendo a tu dashboard...';
+                    setTimeout(() => {
+                        window.location.href = 'jorise-dashboard.html?email=' + encodeURIComponent(email);
+                    }, 1500);
+                } else {
+                    alert.className = 'auth-alert show error';
+                    alert.textContent = '✗ ' + (data.error || 'Error al crear cuenta');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-user-plus"></i> Crear Cuenta Gratis';
+                }
+            } catch (error) {
+                alert.className = 'auth-alert show error';
+                alert.textContent = '✗ Error de conexión. Verifica tu internet.';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Crear Cuenta Gratis';
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('authModal');
+            if (event.target == modal) {
+                closeAuthModal();
+            }
+        }
+
+    <!-- Sistema de autenticación persistente -->
+    <script src="auth-check.js"></script>
+    </script>
+</body>
+</html>

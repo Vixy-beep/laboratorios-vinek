@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Rechazado - Jorise Security</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .error-card {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            animation: slideUp 0.5s ease;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f44336;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: scaleIn 0.5s ease 0.2s both;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .error-icon::before,
+        .error-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+        }
+        .error-icon::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .error-icon::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px;
+            transition: transform 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-card">
+        <div class="error-icon"></div>
+        <h1>Pago Rechazado</h1>
+        <p>No pudimos procesar tu pago. Por favor, verifica los datos de tu tarjeta e intenta nuevamente.</p>
+        <a href="jorise-pricing.html" class="btn">Intentar Nuevamente</a>
+        <a href="index.html" class="btn btn-secondary">Volver al Inicio</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorise Security - Pricing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .header h1 { font-size: 48px; margin-bottom: 15px; }
+        .header p { font-size: 20px; opacity: 0.9; }
+        
+        .pricing-wrapper {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            flex: 0 1 350px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .pricing-card.featured {
+            position: relative;
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: "RECOMENDADO";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 25px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .plan-icon { font-size: 48px; margin-bottom: 20px; }
+        .plan-name {
+            font-size: 32px;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .plan-price {
+            font-size: 56px;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .plan-price span { font-size: 22px; color: #718096; }
+        
+        .plan-description {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .features li {
+            padding: 12px 0;
+            color: #4a5568;
+            font-size: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .features li:last-child { border-bottom: none; }
+        .features li i {
+            color: #48bb78;
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-free {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .btn-free:hover { background: #cbd5e0; }
+        
+        .btn-pro {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-pro:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            opacity: 0.9;
+        }
+        
+        .footer a { color: white; text-decoration: underline; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 36px; }
+            .pricing-card.featured { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💎 Jorise Security Platform</h1>
+            <p>Protección avanzada de ciberseguridad al alcance de todos</p>
+        </div>
+        
+        <div class="pricing-wrapper">
+            <!-- Plan Free -->
+            <div class="pricing-card">
+                <div class="plan-icon">🎁</div>
+                <h2 class="plan-name">Free</h2>
+                <div class="plan-price">$0<span>/mes</span></div>
+                <p class="plan-description">Perfecto para probar Jorise</p>
+                
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> 1 análisis gratuito</li>
+                    <li><i class="fas fa-check"></i> Escaneo básico de archivos</li>
+                    <li><i class="fas fa-check"></i> Detección de malware</li>
+                    <li><i class="fas fa-times" style="color: #e53e3e;"></i> Sin reportes PDF</li>
+                    <li><i class="fas fa-times" style="color: #e53e3e;"></i> Sin API access</li>
+                </ul>
+                
+                <button class="btn btn-free" onclick="selectPlan('Free', 0)">
+                    Comenzar Gratis
+                </button>
+            </div>
+            
+            <!-- Plan Pro -->
+            <div class="pricing-card featured">
+                <div class="plan-icon">🚀</div>
+                <h2 class="plan-name">Pro</h2>
+                <div class="plan-price">$39<span>/mes</span></div>
+                <p class="plan-description">Todo lo que necesitas para estar protegido</p>
+                
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> <strong>Análisis ilimitados</strong></li>
+                    <li><i class="fas fa-check"></i> Escaneo completo de malware</li>
+                    <li><i class="fas fa-check"></i> Análisis de URLs</li>
+                    <li><i class="fas fa-check"></i> Detección de vulnerabilidades</li>
+                    <li><i class="fas fa-check"></i> Monitoreo continuo</li>
+                    <li><i class="fas fa-check"></i> Reportes en PDF</li>
+                    <li><i class="fas fa-check"></i> API Access completo</li>
+                    <li><i class="fas fa-check"></i> Soporte prioritario</li>
+                </ul>
+                
+                <button class="btn btn-pro" onclick="selectPlan('Pro', 39)">
+                    Suscribirme Ahora
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>¿Tienes dudas? <a href="mailto:info@vineksec.online">Contáctanos</a></p>
+            <p style="margin-top: 20px;"><a href="index.html">← Volver al Blog</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Debug: Mostrar logs anteriores
+        console.log('=== DEBUG LOGS DEL ÚLTIMO INTENTO ===');
+        console.log('Último paso:', localStorage.getItem('jorise_debug_step'));
+        console.log('Último registro:', localStorage.getItem('jorise_last_register'));
+        console.log('Última respuesta:', localStorage.getItem('jorise_last_response'));
+        console.log('URL destino:', localStorage.getItem('jorise_redirect_url'));
+        console.log('Último error:', localStorage.getItem('jorise_last_error'));
+        console.log('Excepción:', localStorage.getItem('jorise_exception'));
+        console.log('=====================================');
+        
+        const API_URL = 'https://vineksec.online/jorise-api.php';
+        const PAYMENT_URL = 'https://vineksec.online/polar-checkout.php';
+        
+        let selectedPlanData = null;
+
+        function selectPlan(planName, price) {
+            selectedPlanData = { planName, price, planId: planName === 'Free' ? 1 : 2 };
+            openAuthModal();
+        }
+
+        function openAuthModal() {
+            document.getElementById('pricingAuthModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('pricingAuthModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function showAuthTab(tab) {
+            document.querySelectorAll('.pricing-auth-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.pricing-auth-form').forEach(f => f.classList.remove('active'));
+            if (tab === 'login') {
+                document.getElementById('pricingLoginForm').classList.add('active');
+            } else {
+                document.getElementById('pricingRegisterForm').classList.add('active');
+            }
+        }
+        
+        async function handlePricingLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('pricingLoginEmail').value;
+            const password = document.getElementById('pricingLoginPassword').value;
+            const alert = document.getElementById('pricingLoginAlert');
+            const btn = e.target.querySelector('button');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'login', email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert.className = 'auth-alert show success';
+                    alert.textContent = '✓ Login exitoso!';
+                    
+                    if (selectedPlanData.price === 0) {
+                        setTimeout(() => window.location.href = 'jorise-dashboard.html?email=' + encodeURIComponent(email), 1000);
+                    } else {
+                        setTimeout(() => {
+                            closeAuthModal();
+                            processPolarCheckout(selectedPlanData.planId, email, selectedPlanData.planName, selectedPlanData.price);
+                        }, 1000);
+                    }
+                } else {
+                    alert.className = 'auth-alert show error';
+                    alert.textContent = '✗ ' + (data.message || 'Credenciales incorrectas');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+                }
+            } catch (error) {
+                alert.className = 'auth-alert show error';
+                alert.textContent = '✗ Error de conexión. Intenta nuevamente.';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+            }
+        }
+
+        async function handlePricingRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('pricingRegisterName').value;
+            const email = document.getElementById('pricingRegisterEmail').value;
+            const password = document.getElementById('pricingRegisterPassword').value;
+            const alert = document.getElementById('pricingRegisterAlert');
+            const btn = e.target.querySelector('button');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creando cuenta...';
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'register', email, name, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert.className = 'auth-alert show success';
+                    
+                    if (selectedPlanData.price === 0) {
+                        alert.textContent = '✓ ¡Cuenta creada! Tienes 1 análisis gratis. Redirigiendo...';
+                        setTimeout(() => {
+                            window.location.href = 'jorise-dashboard.html?email=' + encodeURIComponent(email);
+                        }, 2000);
+                    } else {
+                        alert.textContent = '✓ Cuenta creada! Redirigiendo al pago...';
+                        setTimeout(() => {
+                            closeAuthModal();
+                            processPolarCheckout(selectedPlanData.planId, email, selectedPlanData.planName, selectedPlanData.price);
+                        }, 1000);
+                    }
+                } else {
+                    alert.className = 'auth-alert show error';
+                    alert.textContent = '✗ ' + (data.message || data.error || 'Error al crear cuenta');
+                    
+                    if (data.already_exists) {
+                        setTimeout(() => {
+                            showAuthTab('login');
+                            document.getElementById('pricingLoginEmail').value = email;
+                        }, 2000);
+                    }
+                    
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-user-plus"></i> Crear Cuenta';
+                }
+            } catch (error) {
+                alert.className = 'auth-alert show error';
+                alert.textContent = '✗ Error de conexión. Intenta nuevamente.';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Crear Cuenta';
+            }
+        }
+        
+        async function processPolarCheckout(planId, email, planName, price) {
+            try {
+                console.log('Procesando checkout para:', { planId, email, planName, price });
+                
+                const response = await fetch('https://vineksec.online/stripe-checkout-simple.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan_id: planId, email: email })
+                });
+                
+                console.log('Response status:', response.status);
+                
+                // Verificar si la respuesta es JSON válida
+                const text = await response.text();
+                console.log('Response text:', text);
+                
+                let data;
+                try {
+                    data = JSON.parse(text);
+                } catch (e) {
+                    console.error('Error parsing JSON:', e);
+                    alert('Error del servidor: Respuesta inválida\n\n' + text.substring(0, 200));
+                    return;
+                }
+                
+                if (data.success && data.checkout_url) {
+                    localStorage.setItem('jorise_checkout_email', email);
+                    localStorage.setItem('jorise_checkout_plan', planName);
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Error al crear sesión de pago:\n\n' + (data.error || 'Error desconocido') + 
+                          (data.details ? '\n\nDetalles: ' + data.details : ''));
+                }
+            } catch (error) {
+                console.error('Error completo:', error);
+                alert('Error de conexión:\n\n' + error.message);
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('pricingAuthModal');
+            if (event.target == modal) {
+                closeAuthModal();
+            }
+        }
+    </script>
+
+    <!-- Modal de Autenticación para Pricing -->
+    <div id="pricingAuthModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="auth-close" onclick="closeAuthModal()">&times;</span>
+            
+            <div class="auth-tabs">
+                <button class="pricing-auth-tab active" onclick="showAuthTab('login')">Ya tengo cuenta</button>
+                <button class="pricing-auth-tab" onclick="showAuthTab('register')">Soy nuevo</button>
+            </div>
+
+            <div id="pricingLoginForm" class="pricing-auth-form active">
+                <h2>Continuar con tu cuenta</h2>
+                <p>Ingresa tu email y contraseña</p>
+                
+                <form onsubmit="handlePricingLogin(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="pricingLoginEmail" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Contraseña</label>
+                        <input type="password" id="pricingLoginPassword" required placeholder="Tu contraseña" minlength="6">
+                    </div>
+                    
+                    <div class="auth-alert" id="pricingLoginAlert"></div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+
+            <div id="pricingRegisterForm" class="pricing-auth-form">
+                <h2>Crear cuenta</h2>
+                <p>Regístrate para continuar</p>
+                
+                <form onsubmit="handlePricingRegister(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nombre</label>
+                        <input type="text" id="pricingRegisterName" placeholder="Tu nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="pricingRegisterEmail" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Contraseña</label>
+                        <input type="password" id="pricingRegisterPassword" required placeholder="Mínimo 6 caracteres" minlength="6">
+                    </div>
+                    
+                    <div class="auth-alert" id="pricingRegisterAlert"></div>
+                    
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-user-plus"></i> Crear Cuenta
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .auth-modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); }
+        .auth-modal-content { position: relative; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 5% auto; padding: 0; width: 90%; max-width: 450px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .auth-close { position: absolute; right: 20px; top: 20px; font-size: 30px; font-weight: bold; color: white; cursor: pointer; transition: all 0.3s; z-index: 1; }
+        .auth-close:hover { transform: rotate(90deg); color: #ffd700; }
+        .auth-tabs { display: flex; background: rgba(255,255,255,0.1); border-radius: 20px 20px 0 0; }
+        .pricing-auth-tab { flex: 1; padding: 20px; background: transparent; border: none; color: rgba(255,255,255,0.6); font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; border-radius: 20px 20px 0 0; }
+        .pricing-auth-tab.active { background: white; color: #667eea; }
+        .pricing-auth-form { display: none; padding: 40px; background: white; border-radius: 0 0 20px 20px; }
+        .pricing-auth-form.active { display: block; }
+        .pricing-auth-form h2 { margin: 0 0 10px 0; color: #2d3748; font-size: 28px; }
+        .pricing-auth-form > p { margin: 0 0 30px 0; color: #718096; font-size: 14px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #4a5568; font-weight: 600; font-size: 14px; }
+        .form-group label i { margin-right: 8px; color: #667eea; }
+        .form-group input { width: 100%; padding: 12px 15px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 15px; transition: all 0.3s; }
+        .form-group input:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
+        .auth-alert { display: none; padding: 12px; margin-bottom: 20px; border-radius: 8px; font-size: 14px; font-weight: 500; }
+        .auth-alert.show { display: block; }
+        .auth-alert.success { background: #c6f6d5; color: #22543d; }
+        .auth-alert.error { background: #fed7d7; color: #742a2a; }
+        .auth-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .auth-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(102,126,234,0.4); }
+    </style>
+</body>
+</html>

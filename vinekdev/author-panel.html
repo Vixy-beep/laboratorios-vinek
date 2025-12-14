@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Autor | VinekDev Blog</title>
+    <link rel="icon" href="https://img.icons8.com/nolan/64/artificial-intelligence.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-pen-fancy"></i> Panel de Autor</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#my-posts" class="nav-item active" data-section="my-posts">
+                    <i class="fas fa-newspaper"></i> Mis Posts
+                </a>
+                <a href="#new-post" class="nav-item" data-section="new-post">
+                    <i class="fas fa-plus-circle"></i> Crear Post
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+                <a href="blog.html" class="nav-item">
+                    <i class="fas fa-eye"></i> Ver Blog
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Autor&background=6366f1&color=fff" alt="Autor" id="authorAvatar">
+                    <div>
+                        <p class="user-name" id="authorName">Autor</p>
+                        <p class="user-role" id="authorRole">Contribuidor</p>
+                    </div>
+                </div>
+                <button onclick="logout()" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1 id="sectionTitle">Mis Posts</h1>
+            </header>
+
+            <!-- Vixy Mastery Stats -->
+            <section id="vixy-stats-section" class="admin-section" style="margin-bottom: 2rem;">
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <img src="vixy/vixy.png" alt="Vixy" style="width: 60px; height: 60px; border-radius: 12px;" onerror="this.src='https://img.icons8.com/nolan/64/artificial-intelligence.png'">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.5rem; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🏆 Tu Progreso en Vixy Mastery</h3>
+                            <p style="margin: 0.25rem 0 0 0; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">Contribuye a la comunidad y sube en el ranking</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                        <div style="background: rgba(20, 20, 31, 0.6); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2rem; color: #6366f1; font-weight: 700;" id="userRankPosition">-</div>
+                            <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); margin-top: 0.5rem;">Posición</div>
+                        </div>
+                        <div style="background: rgba(20, 20, 31, 0.6); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2rem; color: #8b5cf6; font-weight: 700;" id="userTotalPoints">0</div>
+                            <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); margin-top: 0.5rem;">Puntos Totales</div>
+                        </div>
+                        <div style="background: rgba(20, 20, 31, 0.6); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 2rem; color: #a855f7; font-weight: 700;" id="userPublishedPosts">0</div>
+                            <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); margin-top: 0.5rem;">Posts Publicados</div>
+                        </div>
+                        <div style="background: rgba(20, 20, 31, 0.6); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                            <div style="font-size: 1.2rem; font-weight: 600;" id="userBadge">🌱 Novato</div>
+                            <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); margin-top: 0.5rem;">Insignia</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem; text-align: center;">
+                        <a href="vixymastery.html" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: #fff; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <i class="fas fa-trophy"></i> Ver Ranking Completo
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mis Posts Section -->
+            <section id="my-posts-section" class="admin-section active">
+                <div class="alert-info" style="background: rgba(99, 102, 241, 0.1); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #6366f1; margin-bottom: 2rem;">
+                    <i class="fas fa-info-circle" style="color: #6366f1;"></i>
+                    <strong>Nota:</strong> Tus posts serán revisados por un administrador antes de ser publicados.
+                </div>
+                <div id="myPostsList" class="posts-list"></div>
+            </section>
+
+            <!-- Crear Post Section -->
+            <section id="new-post-section" class="admin-section">
+                <form id="newPostForm" class="post-form">
+                    <div class="form-group">
+                        <label for="postTitle">Título *</label>
+                        <input type="text" id="postTitle" required placeholder="Ej: Guía completa de SQL Injection">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="postCategory">Categoría *</label>
+                            <select id="postCategory" required>
+                                <option value="ciberseguridad">🛡️ Ciberseguridad (+5 puntos)</option>
+                                <option value="pentesting">🔓 Pentesting (+15 puntos)</option>
+                                <option value="scripts">💻 Scripts / Tools (+10 puntos)</option>
+                                <option value="tutoriales">📚 Tutoriales (+30 puntos)</option>
+                                <option value="cursos">🎓 Cursos (+20 puntos)</option>
+                                <option value="noticias">📰 Noticias (+3 puntos)</option>
+                                <option value="herramientas">🔧 Herramientas (+10 puntos)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="postReadTime">Tiempo de lectura (min)</label>
+                            <input type="number" id="postReadTime" value="5" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postExcerpt">Extracto *</label>
+                        <textarea id="postExcerpt" rows="3" required placeholder="Resumen breve del contenido..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postContent">Contenido *</label>
+                        <textarea id="postContent" rows="15" required placeholder="Escribe tu artículo aquí..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postImage">Imagen Destacada (URL)</label>
+                        <input type="url" id="postImage" placeholder="https://ejemplo.com/imagen.jpg">
+                        <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.5rem;">
+                            💡 Usa <a href="https://imgur.com/upload" target="_blank" style="color: #6366f1;">Imgur</a> o <a href="https://imgbb.com" target="_blank" style="color: #6366f1;">ImgBB</a> para subir tu imagen
+                        </p>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar para Revisión
+                        </button>
+                        <button type="reset" class="btn-secondary">
+                            <i class="fas fa-times"></i> Limpiar
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const API_URL = 'https://vineksec.online/blog-api.php';
+        const AUTH_URL = 'https://vineksec.online/auth-clean.php';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            setupNavigation();
+            setupFormListener();
+            loadUserRanking();
+        });
+
+        async function checkAuth() {
+            try {
+                const response = await fetch(AUTH_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'checkAuth' })
+                });
+                
+                const data = await response.json();
+                
+                if (!data.success) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // Actualizar info del usuario
+                document.getElementById('authorName').textContent = data.user.name || 'Autor';
+                document.getElementById('authorRole').textContent = getRoleText(data.user.role);
+                
+                if (data.user.avatar) {
+                    document.getElementById('authorAvatar').src = data.user.avatar;
+                }
+
+                loadMyPosts();
+                loadUserRanking();
+            } catch (error) {
+                console.error('Error:', error);
+                window.location.href = 'login.html';
+            }
+        }
+
+        async function loadUserRanking() {
+            try {
+                const response = await fetch('https://vineksec.online/vixymastery-api.php?action=getRanking');
+                const data = await response.json();
+
+                if (data.success && data.ranking) {
+                    // Obtener email del usuario actual
+                    const authResponse = await fetch(AUTH_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'checkAuth' })
+                    });
+                    const authData = await authResponse.json();
+                    
+                    if (authData.success) {
+                        const userEmail = authData.user.email;
+                        const userRank = data.ranking.find(u => u.email === userEmail);
+                        
+                        if (userRank) {
+                            document.getElementById('userRankPosition').textContent = `#${userRank.position}`;
+                            document.getElementById('userTotalPoints').textContent = userRank.total_points;
+                            document.getElementById('userPublishedPosts').textContent = userRank.total_posts;
+                            document.getElementById('userBadge').textContent = `${userRank.badge.icon} ${userRank.badge.name}`;
+                        } else {
+                            document.getElementById('userRankPosition').textContent = '-';
+                            document.getElementById('userTotalPoints').textContent = '0';
+                            document.getElementById('userPublishedPosts').textContent = '0';
+                            document.getElementById('userBadge').textContent = '🌱 Sin ranking';
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error cargando ranking:', error);
+            }
+        }
+
+        function getRoleText(role) {
+            const roles = {
+                'author': 'Autor',
+                'editor': 'Editor',
+                'moderator': 'Moderador'
+            };
+            return roles[role] || 'Contribuidor';
+        }
+
+        async function logout() {
+            try {
+                await fetch(AUTH_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'logout' })
+                });
+                window.location.href = 'index.html';
+            } catch (error) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function setupNavigation() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const section = this.getAttribute('data-section');
+                    if (!section) return;
+                    
+                    e.preventDefault();
+                    
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
+                    document.getElementById(section + '-section').classList.add('active');
+                    
+                    document.getElementById('sectionTitle').textContent = this.textContent.trim();
+                });
+            });
+        }
+
+        async function loadMyPosts() {
+            try {
+                const response = await fetch(`${API_URL}?action=getPosts`);
+                const data = await response.json();
+                
+                const myPostsList = document.getElementById('myPostsList');
+                
+                if (data.success && data.posts && data.posts.length > 0) {
+                    myPostsList.innerHTML = data.posts.map(post => `
+                        <div class="post-item" style="border-left: 4px solid ${getStatusColor(post.status)};">
+                            <div class="post-info">
+                                <h3>${post.title}</h3>
+                                <p style="color: rgba(255,255,255,0.6);">${post.excerpt || post.content.substring(0, 100)}...</p>
+                                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                    <span><i class="fas fa-folder"></i> ${post.category}</span>
+                                    <span><i class="fas fa-calendar"></i> ${new Date(post.created_at).toLocaleDateString('es-ES')}</span>
+                                    <span style="color: ${getStatusColor(post.status)};">
+                                        <i class="fas ${getStatusIcon(post.status)}"></i> ${getStatusText(post.status)}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    myPostsList.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.6); padding: 3rem;">No has creado ningún post todavía. ¡Crea tu primer post!</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'published': '#10b981',
+                'pending': '#fbbf24',
+                'draft': '#6b7280'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function getStatusIcon(status) {
+            const icons = {
+                'published': 'fa-check-circle',
+                'pending': 'fa-clock',
+                'draft': 'fa-file'
+            };
+            return icons[status] || 'fa-file';
+        }
+
+        function getStatusText(status) {
+            const texts = {
+                'published': 'Publicado',
+                'pending': 'Pendiente de Aprobación',
+                'draft': 'Borrador'
+            };
+            return texts[status] || 'Desconocido';
+        }
+
+        function setupFormListener() {
+            document.getElementById('newPostForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('postTitle').value;
+                const category = document.getElementById('postCategory').value;
+                const excerpt = document.getElementById('postExcerpt').value;
+                const content = document.getElementById('postContent').value;
+                const image = document.getElementById('postImage').value;
+                const reading_time = document.getElementById('postReadTime').value;
+                
+                const btn = e.target.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'createPost',
+                            title,
+                            category,
+                            excerpt,
+                            content,
+                            image,
+                            reading_time
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        alert('✓ ' + data.message);
+                        this.reset();
+                        loadMyPosts();
+                        
+                        // Cambiar a la sección de "Mis Posts"
+                        document.querySelector('[data-section="my-posts"]').click();
+                    } else {
+                        alert('✗ ' + data.message);
+                    }
+                } catch (error) {
+                    alert('✗ Error de conexión');
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar para Revisión';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

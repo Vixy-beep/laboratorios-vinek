@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Artículo de VinekDev">
+    <title id="pageTitle">Artículo | VinekDev</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://img.icons8.com/nolan/64/artificial-intelligence.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/post.css">
+    <link rel="stylesheet" href="/auth-styles.css">
+</head>
+<body>
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Partículas de fondo -->
+    <div id="particles-js"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="/index.html" class="logo">VinekDev</a>
+                <ul class="nav-links">
+                    <li><a href="/index.html#services">Servicios</a></li>
+                    <li><a href="/index.html#about">Nosotros</a></li>
+                    <li><a href="/index.html#portfolio">Portfolio</a></li>
+                    <li><a href="/blog.html" class="active">Blog Tech & Cursos</a></li>
+                    <li><a href="/index.html#contact">Contacto</a></li>
+                    <li><a href="/login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+        <div class="mobile-menu">
+            <a href="/index.html#services">Servicios</a>
+            <a href="/index.html#about">Nosotros</a>
+            <a href="/index.html#portfolio">Portfolio</a>
+            <a href="/blog.html">Blog Tech & Cursos</a>
+            <a href="/login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="/index.html#contact">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <section id="loading-state" class="post-loading">
+        <div class="container">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Cargando artículo...</p>
+        </div>
+    </section>
+
+    <!-- Error State -->
+    <section id="error-state" class="post-error" style="display: none;">
+        <div class="container">
+            <i class="fas fa-exclamation-circle"></i>
+            <h2>Artículo no encontrado</h2>
+            <p>El artículo que buscas no existe o ha sido eliminado.</p>
+            <a href="/blog.html" class="btn-primary">
+                <i class="fas fa-arrow-left"></i> Volver al Blog
+            </a>
+        </div>
+    </section>
+
+    <!-- Post Content -->
+    <article id="post-content" style="display: none;">
+        <!-- Hero Section -->
+        <section class="post-hero">
+            <div class="container">
+                <div class="post-breadcrumb">
+                    <a href="/index.html">Inicio</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="/blog.html">Blog</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span id="post-breadcrumb-category">Artículo</span>
+                </div>
+                
+                <div class="post-category" id="post-category">
+                    <i class="fas fa-shield-alt"></i> Ciberseguridad
+                </div>
+                
+                <h1 class="post-title" id="post-title">Cargando título...</h1>
+                
+                <div class="post-meta">
+                    <a href="#" id="post-author-link" class="post-author" style="text-decoration: none; color: inherit; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <img id="post-author-image" src="https://ui-avatars.com/api/?name=Admin" alt="Autor">
+                        <div class="post-author-info">
+                            <span class="post-author-name" id="post-author-name">VinekDev <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: #6366f1;"></i></span>
+                        </div>
+                    </a>
+                    <div class="post-meta-info">
+                        <span><i class="fas fa-calendar-alt"></i> <span id="post-date">1 Ene 2024</span></span>
+                        <span><i class="fas fa-clock"></i> <span id="post-reading-time">5</span> min lectura</span>
+                        <span><i class="fas fa-eye"></i> <span id="post-views">0</span> vistas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Image -->
+        <section class="post-featured-image">
+            <div class="container">
+                <img id="post-image" src="" alt="Imagen destacada">
+            </div>
+        </section>
+
+        <!-- Post Body -->
+        <section class="post-body">
+            <div class="container">
+                <div class="post-content-wrapper">
+                    <div id="post-body-content" class="post-body-content">
+                        <!-- El contenido del post se cargará aquí -->
+                    </div>
+                    
+                    <!-- Sidebar -->
+                    <aside class="post-sidebar">
+                        <!-- Compartir -->
+                        <div class="sidebar-card">
+                            <h3><i class="fas fa-share-alt"></i> Compartir</h3>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn twitter" id="share-twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="share-btn facebook" id="share-facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="share-btn linkedin" id="share-linkedin">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="share-btn whatsapp" id="share-whatsapp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Categorías -->
+                        <div class="sidebar-card">
+                            <h3><i class="fas fa-folder"></i> Categorías</h3>
+                            <ul class="category-list">
+                                <li><a href="blog.html?category=ciberseguridad">Ciberseguridad</a></li>
+                                <li><a href="blog.html?category=pentesting">Pentesting</a></li>
+                                <li><a href="blog.html?category=cursos">Cursos</a></li>
+                                <li><a href="blog.html?category=tutoriales">Tutoriales</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Newsletter -->
+                        <div class="sidebar-card newsletter-card">
+                            <h3><i class="fas fa-envelope"></i> Newsletter</h3>
+                            <p>Recibe las últimas noticias y tutoriales de ciberseguridad.</p>
+                            <form id="newsletterForm">
+                                <input type="email" id="newsletter-email-sidebar" placeholder="Tu email" required>
+                                <button type="submit" class="btn-primary">Suscribirse</button>
+                            </form>
+                            <div id="newsletter-alert-sidebar" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none; font-size: 13px;"></div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Comentarios -->
+        <section class="comments-section" style="background: rgba(20, 20, 31, 0.6); padding: 60px 0;">
+            <div class="container" style="max-width: 900px; margin: 0 auto;">
+                <h2 style="font-size: 2rem; margin-bottom: 2rem; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    💬 Comentarios (<span id="comments-count">0</span>)
+                </h2>
+
+                <!-- Formulario de Comentario -->
+                <div id="comment-form-container" style="background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 2rem; margin-bottom: 3rem;">
+                    <form id="comment-form">
+                        <textarea 
+                            id="comment-content" 
+                            name="content" 
+                            rows="4" 
+                            placeholder="Comparte tu opinión sobre este artículo..."
+                            style="width: 100%; padding: 1rem; background: rgba(20, 20, 31, 0.8); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 8px; color: #fff; font-size: 1rem; resize: vertical; font-family: 'Inter', sans-serif;"
+                            maxlength="1000"
+                            required
+                        ></textarea>
+                        
+                        <!-- Honeypot anti-bot -->
+                        <input type="text" name="website" id="website" style="display: none;" tabindex="-1" autocomplete="off">
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; flex-wrap: wrap; gap: 1rem;">
+                            <span id="char-count" style="color: rgba(255, 255, 255, 0.5); font-size: 0.85rem;">0 / 1000</span>
+                            <button type="submit" class="btn btn-primary" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); border: none; padding: 0.75rem 2rem; border-radius: 8px; color: #fff; font-weight: 600; cursor: pointer; transition: transform 0.3s ease;">
+                                <i class="fas fa-paper-plane"></i> Publicar Comentario
+                            </button>
+                        </div>
+                        
+                        <div id="comment-alert" style="display: none; padding: 1rem; border-radius: 8px; margin-top: 1rem;"></div>
+                    </form>
+                </div>
+
+                <!-- Lista de Comentarios -->
+                <div id="comments-list">
+                    <div class="loading-comments" style="text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.6);">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #6366f1;"></i>
+                        <p>Cargando comentarios...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Posts -->
+        <section class="related-posts">
+            <div class="container">
+                <h2><i class="fas fa-newspaper"></i> Artículos Relacionados</h2>
+                <div class="related-posts-grid" id="related-posts-grid">
+                    <!-- Posts relacionados se cargarán aquí -->
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VinekDev</h3>
+                    <p>Soluciones de ciberseguridad de clase mundial para proteger tu infraestructura digital.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="/index.html#services">Servicios</a></li>
+                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/index.html#portfolio">Portfolio</a></li>
+                        <li><a href="/index.html#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> info@vinekdev.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VinekDev. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/script.js"></script>
+    <script src="/post.js"></script>
+    
+    <!-- Newsletter Script -->
+    <script>
+        const NEWSLETTER_API = 'https://vineksec.online/newsletter-api.php';
+        
+        document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('newsletter-email-sidebar').value;
+            const alert = document.getElementById('newsletter-alert-sidebar');
+            const button = this.querySelector('button');
+            
+            button.disabled = true;
+            button.textContent = 'Enviando...';
+            
+            try {
+                const formData = new FormData();
+                formData.append('action', 'subscribe');
+                formData.append('email', email);
+                
+                const response = await fetch(NEWSLETTER_API, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                alert.style.display = 'block';
+                if (data.success) {
+                    alert.style.background = '#c6f6d5';
+                    alert.style.color = '#22543d';
+                    alert.textContent = '✓ ' + data.message;
+                    document.getElementById('newsletter-email-sidebar').value = '';
+                } else {
+                    alert.style.background = '#fed7d7';
+                    alert.style.color = '#742a2a';
+                    alert.textContent = '✗ ' + data.message;
+                }
+            } catch (error) {
+                alert.style.display = 'block';
+                alert.style.background = '#fed7d7';
+                alert.style.color = '#742a2a';
+                alert.textContent = '✗ Error de conexión';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Suscribirse';
+            }
+        });
+    </script>
+
+    <!-- Sistema de autenticación persistente -->
+    <script src="/auth-check.js"></script>
+</body>
+</html>

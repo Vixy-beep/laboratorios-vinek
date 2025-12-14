@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Tech & Cursos de VinekDev - Artículos sobre ciberseguridad, pentesting, hacking ético y cursos especializados">
+    <title>Blog Tech & Cursos | VinekDev</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://img.icons8.com/nolan/64/artificial-intelligence.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="auth-styles.css">
+</head>
+<body>
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Partículas de fondo -->
+    <div id="particles-js"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VinekDev</a>
+                <ul class="nav-links">
+                    <li><a href="index.html#services">Servicios</a></li>
+                    <li><a href="index.html#about">Nosotros</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="blog.html" class="active">Blog Tech & Cursos</a></li>
+                    <li><a href="index.html#contact">Contacto</a></li>
+                    <li><a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html#services">Servicios</a>
+            <a href="index.html#about">Nosotros</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="blog.html">Blog Tech & Cursos</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login Admin</a>
+            <a href="index.html#contact">Contacto</a>
+        </div>
+    </header>
+
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <h1>Blog Tech & <span class="highlight">Cursos Elite</span></h1>
+                <p>Conocimiento avanzado en ciberseguridad, pentesting, hacking ético y tecnologías emergentes. Aprende de los expertos que protegen el futuro digital.</p>
+                <div class="blog-categories">
+                    <button class="category-btn active" data-category="all">
+                        <i class="fas fa-th"></i> Todos
+                    </button>
+                    <button class="category-btn" data-category="ciberseguridad">
+                        <i class="fas fa-shield-alt"></i> Ciberseguridad
+                    </button>
+                    <button class="category-btn" data-category="pentesting">
+                        <i class="fas fa-user-secret"></i> Pentesting
+                    </button>
+                    <button class="category-btn" data-category="scripts">
+                        <i class="fas fa-terminal"></i> Scripts / Tools
+                    </button>
+                    <button class="category-btn" data-category="cursos">
+                        <i class="fas fa-graduation-cap"></i> Cursos / Labs
+                        <span class="coming-soon-badge">Coming Soon</span>
+                    </button>
+                    <button class="category-btn" data-category="tutoriales">
+                        <i class="fas fa-code"></i> Tutoriales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog-posts" class="blog-posts">
+        <div class="container">
+            <div class="blog-grid" id="blog-grid">
+                <!-- Los posts se cargarán dinámicamente aquí -->
+                <div class="blog-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Cargando artículos...</p>
+                </div>
+            </div>
+            
+            <div class="blog-empty" id="blog-empty" style="display: none;">
+                <i class="fas fa-newspaper"></i>
+                <h3>No hay artículos disponibles</h3>
+                <p>Pronto estaremos publicando contenido increíble sobre ciberseguridad y tecnología.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva sección de suscripción para notificaciones -->
+    <section class="subscription-section">
+        <div class="container">
+            <div class="subscription-content">
+                <h2>Recibe Notificaciones de Nuevos Posts</h2>
+                <p>Suscríbete con tu email para ser notificado cada vez que publiquemos contenido nuevo en nuestro blog tech.</p>
+                <form id="subscription-form" class="subscription-form">
+                    <input type="email" id="subscription-email" placeholder="Tu email aquí" required>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Suscribirse</span>
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </form>
+                <div id="subscription-status"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>¿Quieres Ser Parte del Equipo de Autores?</h2>
+            <p>Si eres experto en ciberseguridad, pentesting o tecnologías emergentes, únete a nuestro equipo de autores y comparte tu conocimiento con miles de profesionales.</p>
+            <div class="hero-buttons">
+                <a href="login.html" class="btn btn-primary">Acceso Admin</a>
+                <a href="index.html#contact" class="btn btn-outline">Contáctanos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 20px; color: white; margin-top: 60px;">
+        <div class="container" style="max-width: 700px; text-align: center;">
+            <h2 style="font-size: 32px; margin-bottom: 15px;">📬 No te pierdas ningún post</h2>
+            <p style="font-size: 16px; opacity: 0.9; margin-bottom: 30px;">Suscríbete y recibe notificaciones de nuevos artículos directamente en tu email</p>
+            <form id="newsletter-form" style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
+                <input type="email" id="newsletter-email" placeholder="tu@email.com" required style="flex: 1; min-width: 250px; padding: 15px 20px; border: none; border-radius: 8px; font-size: 16px;">
+                <button type="submit" style="padding: 15px 30px; background: white; color: #667eea; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Suscribirme</button>
+            </form>
+            <div id="newsletter-alert" style="margin-top: 15px; padding: 12px; border-radius: 8px; display: none;"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>VinekDev</h3>
+                    <p>Arquitectos del futuro digital. Creamos ecosistemas tecnológicos que trascienden las expectativas convencionales y redefinen industrias completas.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vinekdevs/" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios Elite</h3>
+                    <ul>
+                        <li><a href="index.html#services"><i class="fas fa-shield-alt"></i> WAF & Protección Web</a></li>
+                        <li><a href="index.html#services"><i class="fas fa-user-secret"></i> Penetration Testing</a></li>
+                        <li><a href="index.html#services"><i class="fas fa-search"></i> Forense Digital</a></li>
+                        <li><a href="index.html#services"><i class="fas fa-network-wired"></i> IDS/IPS & Monitoreo</a></li>
+                        <li><a href="index.html#services"><i class="fas fa-headset"></i> SOC as a Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Conecta con Nosotros</h3>
+                    <ul>
+                        <li><a href="mailto:info@vineksec.online"><i class="fas fa-envelope"></i> info@vineksec.online</a></li>
+                        <li><a href="tel:+18295912999"><i class="fas fa-phone"></i> +1 (829) 591-2999</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Santo Domingo, Dominican Republic</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> 24/7 Support Available</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="blog.html"><i class="fas fa-blog"></i> Tech Blog</a></li>
+                        <li><a href="jorise-pricing.html"><i class="fas fa-shield-alt"></i> Jorise Security</a></li>
+                        <li><a href="login.html"><i class="fas fa-user-shield"></i> Panel Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 VinekDev. Forjando el futuro digital. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="blog.js"></script>
+    
+    <!-- Newsletter Script -->
+    <script>
+        const NEWSLETTER_API = 'https://vineksec.online/newsletter-api.php';
+        
+        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('newsletter-email').value;
+            const alert = document.getElementById('newsletter-alert');
+            const button = this.querySelector('button');
+            
+            button.disabled = true;
+            button.textContent = 'Enviando...';
+            
+            try {
+                const formData = new FormData();
+                formData.append('action', 'subscribe');
+                formData.append('email', email);
+                
+                const response = await fetch(NEWSLETTER_API, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                alert.style.display = 'block';
+                if (data.success) {
+                    alert.style.background = '#c6f6d5';
+                    alert.style.color = '#22543d';
+                    alert.textContent = '✓ ' + data.message;
+                    document.getElementById('newsletter-email').value = '';
+                } else {
+                    alert.style.background = '#fed7d7';
+                    alert.style.color = '#742a2a';
+                    alert.textContent = '✗ ' + data.message;
+                }
+            } catch (error) {
+                alert.style.display = 'block';
+                alert.style.background = '#fed7d7';
+                alert.style.color = '#742a2a';
+                alert.textContent = '✗ Error de conexión. Intenta nuevamente.';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Suscribirme';
+            }
+        });
+    </script>
+
+    <!-- Sistema de autenticación persistente -->
+    <script src="auth-check.js"></script>
+</body>
+</html>

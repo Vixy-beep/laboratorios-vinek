@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perfil de usuario - VinekDev Community">
+    <title>Perfil de Usuario | VinekDev</title>
+    <link rel="icon" href="https://img.icons8.com/nolan/64/artificial-intelligence.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <style>
+        .profile-hero {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            padding: 120px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(20, 20, 31, 0.6);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #6366f1;
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-role {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 2rem 0;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.5rem;
+        }
+
+        .user-posts-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-to-ranking {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-ranking:hover {
+            transform: translateX(-5px);
+        }
+
+        .loading-posts {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .loading-posts i {
+            font-size: 3rem;
+            color: #6366f1;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .no-posts i {
+            font-size: 4rem;
+            color: #6366f1;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">VinekDev</a>
+                <ul class="nav-links">
+                    <li><a href="index.html#services">Servicios</a></li>
+                    <li><a href="index.html#about">Nosotros</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="blog.html">Blog Tech & Cursos</a></li>
+                    <li><a href="vixymastery.html">Vixy Mastery</a></li>
+                    <li><a href="jorise.html" class="jorise-nav-btn">
+                        <i class="fas fa-shield-alt"></i> 
+                        <span class="jorise-text">Jorise Security</span>
+                        <span class="jorise-badge">PRO</span>
+                    </a></li>
+                    <li><a href="index.html#contact">Contacto</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+        <div class="mobile-menu">
+            <a href="index.html#services">Servicios</a>
+            <a href="index.html#about">Nosotros</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="blog.html">Blog Tech & Cursos</a>
+            <a href="vixymastery.html">Vixy Mastery</a>
+            <a href="jorise.html" class="jorise-mobile"><i class="fas fa-shield-alt"></i> Jorise Security</a>
+            <a href="index.html#contact">Contacto</a>
+        </div>
+    </header>
+
+    <section class="profile-hero">
+        <div class="container">
+            <a href="vixymastery.html" class="back-to-ranking">
+                <i class="fas fa-arrow-left"></i> Volver al Ranking
+            </a>
+            <div class="profile-card">
+                <img id="profileAvatar" src="" alt="Avatar" class="profile-avatar">
+                <h1 id="profileName" class="profile-name">Cargando...</h1>
+                <p id="profileRole" class="profile-role">Usuario</p>
+                <span id="profileBadge" class="profile-badge">🌱 Novato</span>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span id="userPosition" class="stat-number">-</span>
+                        <span class="stat-label">Posición en Ranking</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="userPoints" class="stat-number">0</span>
+                        <span class="stat-label">Puntos Totales</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="userPosts" class="stat-number">0</span>
+                        <span class="stat-label">Posts Publicados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="userViews" class="stat-number">0</span>
+                        <span class="stat-label">Visitas Totales</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="user-posts-section">
+        <div class="container">
+            <h2 class="section-title">📚 Artículos Publicados</h2>
+            <div id="userPostsGrid" class="blog-grid">
+                <div class="loading-posts">
+                    <i class="fas fa-spinner"></i>
+                    <p>Cargando posts...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>VinekDev</h3>
+                    <p>Construyendo una comunidad sana, divertida y colaborativa para todos los entusiastas del hacking y la tecnología.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vinekdevs/" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Comunidad</h3>
+                    <ul>
+                        <li><a href="blog.html"><i class="fas fa-blog"></i> Blog Tech</a></li>
+                        <li><a href="vixymastery.html"><i class="fas fa-trophy"></i> Vixy Mastery</a></li>
+                        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Productos</h3>
+                    <ul>
+                        <li><a href="jorise.html"><i class="fas fa-shield-alt"></i> Jorise Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 VinekDev. Forjando el futuro digital. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = 'https://vineksec.online/blog-api.php';
+        const MASTERY_API = 'https://vineksec.online/vixymastery-api.php';
+        
+        // Obtener ID de usuario de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+
+        if (!userId) {
+            window.location.href = 'vixymastery.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserProfile();
+            loadUserPosts();
+            setupMobileMenu();
+            setupCursor();
+        });
+
+        async function loadUserProfile() {
+            try {
+                const response = await fetch(`${MASTERY_API}?action=getRanking`);
+                const data = await response.json();
+
+                if (data.success && data.ranking) {
+                    const user = data.ranking.find(u => u.user_id == userId);
+                    
+                    if (user) {
+                        document.getElementById('profileAvatar').src = user.avatar;
+                        document.getElementById('profileName').textContent = user.name;
+                        document.getElementById('profileRole').textContent = getRoleText(user.role);
+                        
+                        const badge = document.getElementById('profileBadge');
+                        badge.textContent = `${user.badge.icon} ${user.badge.name}`;
+                        badge.style.backgroundColor = `${user.badge.color}22`;
+                        badge.style.border = `1px solid ${user.badge.color}`;
+                        badge.style.color = user.badge.color;
+                        
+                        document.getElementById('userPosition').textContent = `#${user.position}`;
+                        document.getElementById('userPoints').textContent = user.total_points;
+                        document.getElementById('userPosts').textContent = user.total_posts;
+                        document.getElementById('userViews').textContent = user.total_views.toLocaleString();
+                        
+                        document.title = `${user.name} - Perfil | VinekDev`;
+                    } else {
+                        window.location.href = 'vixymastery.html';
+                    }
+                }
+            } catch (error) {
+                console.error('Error cargando perfil:', error);
+            }
+        }
+
+        async function loadUserPosts() {
+            try {
+                const response = await fetch(`${API_URL}?action=getPosts`);
+                const data = await response.json();
+
+                if (data.success && data.posts) {
+                    const userPosts = data.posts.filter(post => post.author_id == userId);
+                    displayPosts(userPosts);
+                } else {
+                    showNoPosts();
+                }
+            } catch (error) {
+                console.error('Error cargando posts:', error);
+                showNoPosts();
+            }
+        }
+
+        function displayPosts(posts) {
+            const grid = document.getElementById('userPostsGrid');
+            
+            if (posts.length === 0) {
+                showNoPosts();
+                return;
+            }
+
+            grid.innerHTML = '';
+
+            posts.forEach(post => {
+                const card = document.createElement('article');
+                card.className = 'blog-card';
+                
+                const categoryColors = {
+                    'ciberseguridad': '#6366f1',
+                    'pentesting': '#8b5cf6',
+                    'tutoriales': '#a855f7',
+                    'cursos': '#c084fc'
+                };
+
+                card.innerHTML = `
+                    <div class="blog-card-image" style="background-image: url('${post.featured_image || 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800'}')">
+                        <span class="blog-category" style="background-color: ${categoryColors[post.category?.toLowerCase()] || '#6366f1'}">${post.category}</span>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> ${new Date(post.created_at).toLocaleDateString('es-ES')}</span>
+                            <span><i class="fas fa-clock"></i> ${post.read_time || post.reading_time || '5'} min lectura</span>
+                        </div>
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt}</p>
+                        <div class="blog-card-footer">
+                            <a href="post.html?id=${post.id}" class="btn-read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                            <span class="blog-views"><i class="fas fa-eye"></i> ${post.views}</span>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function showNoPosts() {
+            const grid = document.getElementById('userPostsGrid');
+            grid.innerHTML = `
+                <div class="no-posts">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Sin posts publicados</h3>
+                    <p>Este usuario aún no ha publicado ningún artículo.</p>
+                </div>
+            `;
+        }
+
+        function getRoleText(role) {
+            const roles = {
+                'super_admin': 'Super Administrador',
+                'admin': 'Administrador',
+                'moderator': 'Moderador',
+                'editor': 'Editor',
+                'author': 'Autor'
+            };
+            return roles[role] || 'Usuario';
+        }
+
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                });
+
+                const mobileLinks = document.querySelectorAll('.mobile-menu a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                    });
+                });
+            }
+        }
+
+        function setupCursor() {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+
+            if (cursor && cursorFollower) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    
+                    setTimeout(() => {
+                        cursorFollower.style.left = e.clientX + 'px';
+                        cursorFollower.style.top = e.clientY + 'px';
+                    }, 100);
+                });
+            }
+        }
+    </script>
+    <script src="auth-check.js"></script>
+</body>
+</html>

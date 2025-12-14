@@ -1,0 +1,28 @@
+# Configuración con credenciales sensibles
+config.php
+
+# Dependencias de Composer
+vendor/
+composer.lock
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+stripe-webhook-log.txt
+azul-log.txt
+azul-webhook-log.txt
+azul-cert.pem
+polar-log.txt
+polar-webhook-log.txt
+
+# Archivos temporales
+*.tmp
+*.swp
+*.swo
+
+# Variables de entorno
+.env
+.env.local

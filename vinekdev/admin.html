@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin | VinekDev Blog</title>
+    <link rel="icon" href="https://img.icons8.com/nolan/64/artificial-intelligence.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-shield-alt"></i> VinekDev Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a>
+                <a href="#posts" class="nav-item" data-section="posts">
+                    <i class="fas fa-newspaper"></i> Posts
+                </a>
+                <a href="#new-post" class="nav-item" data-section="new-post">
+                    <i class="fas fa-plus-circle"></i> Nuevo Post
+                </a>
+                <a href="#moderation" class="nav-item" data-section="moderation" id="moderationNav" style="display: none;">
+                    <i class="fas fa-check-circle"></i> Moderación
+                    <span class="badge" id="pendingBadge">0</span>
+                </a>
+                <a href="edit-requests.html" class="nav-item">
+                    <i class="fas fa-edit"></i> Solicitudes de Edición
+                    <span class="badge" id="editRequestsBadge" style="display: none;">0</span>
+                </a>
+                <a href="#users" class="nav-item" data-section="users">
+                    <i class="fas fa-users"></i> Usuarios
+                </a>
+                <a href="#settings" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff" alt="Admin">
+                    <div>
+                        <p class="user-name" id="adminName">Admin</p>
+                        <p class="user-role" id="adminRole">Administrador</p>
+                    </div>
+                </div>
+                <button onclick="logout()" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1 id="sectionTitle">Dashboard</h1>
+                <div class="admin-actions">
+                    <a href="blog.html" target="_blank" class="btn-secondary">
+                        <i class="fas fa-eye"></i> Ver Blog
+                    </a>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalPosts">0</h3>
+                            <p>Total Posts</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalViews">0</h3>
+                            <p>Total Visitas</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalUsers">0</h3>
+                            <p>Usuarios</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="postsThisMonth">0</h3>
+                            <p>Posts este mes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-posts">
+                    <h2>Posts Recientes</h2>
+                    <div id="recentPostsList"></div>
+                </div>
+            </section>
+
+            <!-- Posts Section -->
+            <section id="posts-section" class="admin-section">
+                <div class="section-header">
+                    <input type="text" id="searchPosts" placeholder="Buscar posts..." class="search-input">
+                    <select id="filterCategory" class="filter-select">
+                        <option value="all">Todas las categorías</option>
+                        <option value="ciberseguridad">Ciberseguridad</option>
+                        <option value="pentesting">Pentesting</option>
+                        <option value="scripts">Scripts / Tools</option>
+                        <option value="cursos">Cursos</option>
+                        <option value="tutoriales">Tutoriales</option>
+                    </select>
+                </div>
+                <div id="postsList" class="posts-list"></div>
+            </section>
+
+            <!-- New Post Section -->
+            <section id="new-post-section" class="admin-section">
+                <form id="newPostForm" class="post-form">
+                    <div class="form-group">
+                        <label for="postTitle">Título</label>
+                        <input type="text" id="postTitle" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="postCategory">Categoría</label>
+                            <select id="postCategory" required>
+                                <option value="ciberseguridad">Ciberseguridad</option>
+                                <option value="pentesting">Pentesting</option>
+                                <option value="scripts">Scripts / Tools</option>
+                                <option value="cursos">Cursos</option>
+                                <option value="tutoriales">Tutoriales</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="postReadTime">Tiempo de lectura (min)</label>
+                            <input type="number" id="postReadTime" value="5" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postExcerpt">Extracto</label>
+                        <textarea id="postExcerpt" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postContent">Contenido</label>
+                        <textarea id="postContent" rows="15" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postImage">Imagen Destacada</label>
+                        <div class="image-upload-container">
+                            <input type="file" id="postImageFile" accept="image/*" style="display:none">
+                            <input type="hidden" id="postImageUrl">
+                            <button type="button" onclick="document.getElementById('postImageFile').click()" class="btn-upload">
+                                <i class="fas fa-upload"></i> Subir Imagen desde tu PC
+                            </button>
+                            <div id="postImagePreview" style="display:none; margin-top: 15px;">
+                                <img id="postImagePreviewImg" style="max-width: 100%; max-height: 300px; border-radius: 8px; display: block;">
+                                <button type="button" onclick="removePostImage()" class="btn-remove-image" style="margin-top: 10px;">
+                                    <i class="fas fa-times"></i> Quitar Imagen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Publicar Post
+                        </button>
+                        <button type="reset" class="btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Moderation Section -->
+            <section id="moderation-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-check-circle"></i> Posts Pendientes de Aprobación</h2>
+                    <button onclick="loadPendingPosts()" class="btn-secondary">
+                        <i class="fas fa-sync-alt"></i> Actualizar
+                    </button>
+                </div>
+                <div id="pendingPostsList" class="posts-list">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i> Cargando posts pendientes...
+                    </div>
+                </div>
+                <div id="noPendingPosts" class="empty-state" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>¡Todo al día!</h3>
+                    <p>No hay posts pendientes de aprobación en este momento.</p>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users-section" class="admin-section">
+                <div class="section-header">
+                    <h2>Gestión de Usuarios</h2>
+                    <button onclick="toggleNewUserForm()" class="btn-primary" id="toggleUserFormBtn">
+                        <i class="fas fa-user-plus"></i> Nuevo Usuario
+                    </button>
+                </div>
+
+                <!-- Formulario Nuevo Usuario -->
+                <div id="newUserFormContainer" class="form-container" style="display: none;">
+                    <h3><i class="fas fa-user-plus"></i> Crear Nuevo Usuario</h3>
+                    <form id="newUserForm" class="post-form">
+                        <div class="form-group">
+                            <label for="newUserName">Nombre Completo *</label>
+                            <input type="text" id="newUserName" placeholder="Ej: Juan Pérez" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newUserEmail">Email *</label>
+                            <input type="email" id="newUserEmail" placeholder="usuario@vinekdev.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newUserPassword">Contraseña *</label>
+                            <input type="password" id="newUserPassword" placeholder="Mínimo 8 caracteres" required minlength="8">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newUserPasswordConfirm">Confirmar Contraseña *</label>
+                            <input type="password" id="newUserPasswordConfirm" placeholder="Repite la contraseña" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newUserRole">Rol *</label>
+                            <select id="newUserRole" required>
+                                <option value="author">Autor (Puede crear posts)</option>
+                                <option value="admin">Admin (Puede crear posts y usuarios)</option>
+                                <option value="super_admin">Super Admin (Control total)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newUserAvatar">URL de Foto de Perfil (Opcional)</label>
+                            <input type="url" id="newUserAvatar" placeholder="https://ejemplo.com/foto.jpg">
+                            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.5rem;">
+                                💡 Puedes usar <a href="https://imgur.com/upload" target="_blank" style="color: #6366f1;">Imgur</a> o <a href="https://imgbb.com" target="_blank" style="color: #6366f1;">ImgBB</a> para subir tu imagen gratis
+                            </p>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-user-check"></i> Crear Usuario
+                            </button>
+                            <button type="button" onclick="toggleNewUserForm()" class="btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista de Usuarios -->
+                <div id="usersList" class="users-list"></div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="admin-section">
+                <div class="admin-header">
+                    <h1><i class="fas fa-cog"></i> Configuración</h1>
+                </div>
+
+                <!-- Configuración de Avatar -->
+                <div class="form-container" style="margin-bottom: 2.5rem;">
+                    <h3><i class="fas fa-user-circle"></i> Foto de Perfil</h3>
+                    
+                    <!-- Preview del Avatar Actual -->
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <img id="currentAvatarPreview" 
+                             src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff&size=200" 
+                             alt="Avatar actual"
+                             style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #6366f1; object-fit: cover; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);">
+                        <p style="color: rgba(255,255,255,0.6); margin-top: 1rem; font-size: 0.9rem;">Tu foto de perfil actual</p>
+                    </div>
+
+                    <form id="avatarForm" onsubmit="event.preventDefault(); updateAvatar();">
+                        <!-- Opción 1: Subir desde PC -->
+                        <div class="form-group">
+                            <label for="userAvatarFile">
+                                <i class="fas fa-upload"></i> Opción 1: Subir desde tu PC
+                            </label>
+                            <input type="file" id="userAvatarFile" accept="image/*" style="display:none">
+                            <button type="button" onclick="document.getElementById('userAvatarFile').click()" class="btn-upload" style="width: 100%; max-width: 100%;">
+                                <i class="fas fa-cloud-upload-alt"></i> Seleccionar Imagen desde tu Computadora
+                            </button>
+                            <div id="avatarPreviewContainer" style="display:none; margin-top: 1.5rem; text-align: center;">
+                                <img id="avatarPreviewImg" style="max-width: 200px; max-height: 200px; border-radius: 50%; border: 3px solid #6366f1; object-fit: cover;">
+                                <p style="color: #10b981; margin-top: 0.75rem; font-weight: 600;">
+                                    <i class="fas fa-check-circle"></i> Imagen seleccionada
+                                </p>
+                                <button type="button" onclick="removeAvatarPreview()" class="btn-remove-image" style="margin-top: 1rem;">
+                                    <i class="fas fa-times"></i> Quitar Imagen
+                                </button>
+                            </div>
+                            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.75rem;">
+                                📸 Formatos: JPG, PNG, GIF • Tamaño máximo: 2 MB • Recomendado: 200x200 px
+                            </p>
+                        </div>
+
+                        <div style="text-align: center; margin: 2rem 0; color: rgba(255,255,255,0.4); font-weight: 600;">
+                            - O -
+                        </div>
+
+                        <!-- Opción 2: URL -->
+                        <div class="form-group">
+                            <label for="userAvatar">
+                                <i class="fas fa-link"></i> Opción 2: URL de Imagen en Internet
+                            </label>
+                            <input type="url" id="userAvatar" placeholder="https://ejemplo.com/mi-foto.jpg">
+                            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.5rem;">
+                                💡 Sube tu imagen a <a href="https://imgur.com/upload" target="_blank" style="color: #6366f1;">Imgur</a> o <a href="https://imgbb.com" target="_blank" style="color: #6366f1;">ImgBB</a> y pega la URL aquí
+                            </p>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary" style="width: 100%;">
+                                <i class="fas fa-save"></i> Actualizar Foto de Perfil
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Configuración General del Blog -->
+                <div class="form-container">
+                    <h3><i class="fas fa-blog"></i> Configuración General del Blog</h3>
+                    <form id="settingsForm" class="settings-form">
+                        <div class="form-group">
+                            <label for="blogName">Nombre del Blog</label>
+                            <input type="text" id="blogName" value="Blog Tech & Cursos">
+                        </div>
+                        <div class="form-group">
+                            <label for="blogDescription">Descripción</label>
+                            <textarea id="blogDescription" rows="3">Conocimiento avanzado en ciberseguridad y tecnologías emergentes</textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i> Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
