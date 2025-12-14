@@ -341,10 +341,8 @@ async function handleNewPost(e) {
             const postId = data.id; // ID del nuevo post
             alert('✓ Post publicado exitosamente!');
             
-            // Preguntar si quiere enviar newsletter
-            if (confirm('¿Enviar notificación a suscriptores del newsletter? (｡•̀ᴗ-)✧')) {
-                await sendNewsletterNotification(postId);
-            }
+            // Enviar newsletter automáticamente
+            sendNewsletterNotification(postId);
             
             document.getElementById('newPostForm').reset();
             document.getElementById('postImagePreview').style.display = 'none';
@@ -1265,6 +1263,10 @@ async function approvePostAction(postId) {
         
         if (data.success) {
             alert('✓ Post aprobado y publicado exitosamente');
+            
+            // Enviar newsletter automáticamente
+            sendNewsletterNotification(postId);
+            
             loadPendingPosts();
             loadDashboardStats();
         } else {
