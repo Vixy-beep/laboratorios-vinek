@@ -9,8 +9,20 @@ composer.lock
 .DS_Store
 Thumbs.db
 
+# Credenciales sensibles
+config.php
+
 # Logs
 *.log
+
+# Uploads de usuarios (solo mantener README)
+uploads/*
+!uploads/README.txt
+
+# Temporales y cache
+*.tmp
+.DS_Store
+Thumbs.db
 stripe-webhook-log.txt
 azul-log.txt
 azul-webhook-log.txt
